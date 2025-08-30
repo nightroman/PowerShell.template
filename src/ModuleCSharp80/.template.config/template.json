@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Roman Kuzmin",
+  "classifications": [ "PowerShell", "Module" ],
+  "identity": "PowerShell.module.CSharp.80",
+  "groupIdentity": "PowerShell.module.80",
+  "name": "PowerShell module net8.0",
+  "shortName": "ps-module-80",
+  "sourceName": "ModuleCSharp",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "guids": [
+    "c5ba4ed8-11b9-4ff9-bdd7-f140c80e14b3"
+  ]
+}

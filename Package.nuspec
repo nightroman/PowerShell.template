@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FarNet.PowerShell.template</id>
+    <version>0.0.1</version>
+    <authors>Roman Kuzmin</authors>
+    <owners>Roman Kuzmin</owners>
+    <license type="expression">MIT</license>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/nightroman/PowerShell.template</projectUrl>
+    <description>PowerShell module templates.</description>
+    <releaseNotes>
+Templates:
+- Binary modules // C#, net8.0 and netstandard2.0
+    </releaseNotes>
+    <tags>PowerShell Module Script Template</tags>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+</package>

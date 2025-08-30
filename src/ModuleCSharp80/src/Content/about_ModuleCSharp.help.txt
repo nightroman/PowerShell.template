@@ -1,0 +1,14 @@
+TOPIC
+    about_ModuleCSharp
+
+SHORT DESCRIPTION
+    TODO-description
+
+LONG DESCRIPTION
+    Available commands:
+
+        Get-ModuleCSharpData
+            Gets ...
+
+SEE ALSO
+    ModuleCSharp https://github.com/nightroman/ModuleCSharp
