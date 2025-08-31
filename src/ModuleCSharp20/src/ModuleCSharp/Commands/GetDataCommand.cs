@@ -1,5 +1,4 @@
-﻿
-using System.Management.Automation;
+﻿using System.Management.Automation;
 
 namespace ModuleCSharp.Commands;
 
@@ -12,6 +11,6 @@ public sealed class GetDataCommand : PSCmdlet
 
 	protected override void BeginProcessing()
 	{
-		WriteObject(Data);
+		WriteObject($"Data: '{Data}'.");
 	}
 }

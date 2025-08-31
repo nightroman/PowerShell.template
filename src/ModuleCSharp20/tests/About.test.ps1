@@ -1,25 +1,29 @@
+<#
+.Synopsis
+	Common tests about commands.
+#>
 
 Set-StrictMode -Version 3
 Import-Module ModuleCSharp
 
-task command_help_has_synopsis_with_period {
-	foreach($cmd in Get-Command -Module ModuleCSharp) {
-		$r = Get-Help $cmd
-		if (!$r.Synopsis.EndsWith('.')) {
-			Write-Warning "$($cmd.CommandType) '$cmd': missing synopsis or its period."
-		}
-	}
-}
-
-task exported_commands_exist {
+task exported_command_exists {
+	$commands = (Get-Command -Module ModuleCSharp).ForEach('Name')
 	$exported = @(
 		$data = Import-PowerShellDataFile ..\src\Content\ModuleCSharp.psd1
 		$data.AliasesToExport
-		$data.FunctionsToExport
 		$data.CmdletsToExport
+		$data.FunctionsToExport
 	)
-	$commands = (Get-Command -Module ModuleCSharp).ForEach('Name')
 	foreach($_ in $exported) {
 		assert ($_ -in $commands) "Missing exported command: '$_'."
+	}
+}
+
+task command_help_synopsis {
+	$commands = Get-Command -Module ModuleCSharp
+	foreach($_ in $commands) {
+		if (!(Get-Help $_).Synopsis.EndsWith('.')) {
+			Write-Warning "$($_.CommandType) '$_': Missing synopsis or its period."
+		}
 	}
 }

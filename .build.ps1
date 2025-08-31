@@ -17,12 +17,13 @@ task clean cs20::clean, cs80::clean, {
 }
 
 task sync {
-	exec { robocopy src\ModuleCSharp20 src\ModuleCSharp80 /MIR /XF template.json *.props *.build.ps1 *.csproj /XD bin obj } (0..3)
+	Set-Location src
+	exec { robocopy ModuleCSharp20 ModuleCSharp80 /MIR /XF template.json *.props *.build.ps1 *.csproj /XD bin obj } (0..3)
 }
 
 task package sync, {
 	remove z
-	exec { robocopy src z\content\ModuleCSharp /S /XF *.props /XD bin obj } 1
+	exec { robocopy src z\content /S /XF *.props /XD bin obj } 1
 
 	Copy-Item -Destination z @(
 		'README.md'
@@ -35,7 +36,8 @@ task nuget package, {
 }
 
 task install {
-	$path = Resolve-Path "$PackageName.*.nupkg"
+	[string]$path = Resolve-Path "$PackageName.*.nupkg"
+	requires -Path $path
 	exec { dotnet new install $path }
 }
 
