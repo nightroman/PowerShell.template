@@ -6,13 +6,13 @@
 param(
 	[string]$Configuration = (property Configuration Release)
 	,
-	[string]$TargetFramework = (property TargetFramework netstandard2.0)
+	[string]$TargetFramework = (property TargetFramework net8.0)
 )
 
 $ProgressPreference = 0
 Set-StrictMode -Version 3
 $ModuleName = 'ModuleCSharp'
-$ModuleRoot = "$env:ProgramFiles\WindowsPowerShell\Modules\$ModuleName"
+$ModuleRoot = "$env:ProgramFiles\PowerShell\Modules\$ModuleName"
 
 $Description = 'TODO-description'
 $ProjectUrl = "https://github.com/nightroman/$ModuleName"
@@ -62,7 +62,7 @@ task markdown {
 	)}
 }
 
-task meta -Inputs .build.ps1, Release-Notes.md -Outputs src\Directory.Build.props -Jobs version, {
+task meta -Inputs 1.build.ps1, Release-Notes.md -Outputs src\Directory.Build.props -Jobs version, {
 	Set-Content src\Directory.Build.props @"
 <Project>
   <PropertyGroup>
@@ -113,15 +113,5 @@ task pushPSGallery package, {
 task test {
 	Invoke-Build ** tests
 }
-
-task desktop {
-	exec { powershell -NoProfile -Command Invoke-Build test }
-}
-
-task core {
-	exec { pwsh -NoProfile -Command Invoke-Build test }
-}
-
-task tests desktop, core
 
 task . build, help, clean

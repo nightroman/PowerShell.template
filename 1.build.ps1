@@ -4,7 +4,7 @@
 #>
 
 param(
-	[ValidateScript({'cs20::src\ModuleCSharp20\.build.ps1', 'cs80::src\ModuleCSharp80\.build.ps1'})]
+	[ValidateScript({'cs20::src\ModuleCSharp20\1.build.ps1', 'cs80::src\ModuleCSharp80\1.build.ps1'})]
 	$Extends
 )
 

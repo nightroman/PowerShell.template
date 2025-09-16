@@ -4,12 +4,12 @@ namespace ModuleCSharp.Commands;
 
 [Cmdlet("Get", "ModuleCSharpData")]
 [OutputType(typeof(string))]
-public sealed class GetDataCommand : PSCmdlet
+public sealed class GetDataCommand : AbstractCmdlet
 {
 	[Parameter(Position = 0)]
 	public string? Data { get; set; }
 
-	protected override void BeginProcessing()
+	protected override void MyBeginProcessing()
 	{
 		WriteObject($"Data: '{Data}'.");
 	}
